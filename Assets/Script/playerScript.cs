@@ -11,6 +11,8 @@ public class playerScript : MonoBehaviour
     [SerializeField] Vector3 maxVelocity;
     [SerializeField] Vector3 minVelocity;
 
+
+
     void Start()
     {
         minVelocity = -maxVelocity;
@@ -20,6 +22,7 @@ public class playerScript : MonoBehaviour
     {
         Movement();
         maxVelo();
+
     }
 
 
@@ -34,32 +37,9 @@ public class playerScript : MonoBehaviour
 
     void maxVelo()
     {
-        if (gameObject.GetComponent<Rigidbody>().velocity.x > maxVelocity.x )
+        if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > 10 )
         {
-            Vector3 temp = gameObject.GetComponent<Rigidbody>().velocity;
-            temp.x = maxVelocity.x - maxVelocity.x * 0.1f;
-            gameObject.GetComponent<Rigidbody>().velocity = temp;
-        }
-
-        else if (gameObject.GetComponent<Rigidbody>().velocity.z > maxVelocity.z)
-        {
-            Vector3 temp = gameObject.GetComponent<Rigidbody>().velocity;
-            temp.z = maxVelocity.z - maxVelocity.z * 0.1f;
-            gameObject.GetComponent<Rigidbody>().velocity = temp;
-        }
-
-        else if (gameObject.GetComponent<Rigidbody>().velocity.x < minVelocity.x)
-        {
-            Vector3 temp = gameObject.GetComponent<Rigidbody>().velocity;
-            temp.x = minVelocity.z + minVelocity.z * 0.1f;
-            gameObject.GetComponent<Rigidbody>().velocity = temp;
-        }
-
-        else if (gameObject.GetComponent<Rigidbody>().velocity.z < minVelocity.z)
-        {
-            Vector3 temp = gameObject.GetComponent<Rigidbody>().velocity;
-            temp.z = minVelocity.z + minVelocity.z * 0.1f;
-            gameObject.GetComponent<Rigidbody>().velocity = temp;
+            gameObject.GetComponent<Rigidbody>().velocity *= 0.1f;
         }
 
     }

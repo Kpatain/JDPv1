@@ -16,6 +16,7 @@ public class joystickScript : MonoBehaviour
     void Start()
     {
         gameObject.transform.localScale = new Vector3(0, 0, 0);
+
     }
 
     void Update()
@@ -50,8 +51,9 @@ public class joystickScript : MonoBehaviour
             float hyp = Mathf.Sqrt(Mathf.Abs(jsmPos.x - jsfPos.x) + Mathf.Abs(jsmPos.y - jsfPos.y));
 
             //trop loin ?
-            /**
-            if (hyp > jsF.GetComponent<SpriteRenderer>().bounds.size.x)
+            
+            /*
+            if (hyp > 116)
             {
                 thalesEtTout(hyp);
             }
@@ -102,15 +104,15 @@ public class joystickScript : MonoBehaviour
         Vector3 temp = Input.mousePosition;
         temp.x -= Screen.width / 2;
         temp.y -= Screen.height / 2;
-        jsmPos.x = ((jsF.GetComponent<SphereCollider>().radius) / hyp) * (temp.x - jsF.GetComponent<SphereCollider>().radius);
-        jsmPos.y = ((jsF.GetComponent<SphereCollider>().radius) / hyp) * (temp.y - jsF.GetComponent<SphereCollider>().radius);
+        jsmPos.x = ((gameObject.GetComponent<SphereCollider>().radius) / hyp) * (temp.x - gameObject.GetComponent<SphereCollider>().radius);
+        jsmPos.y = ((gameObject.GetComponent<SphereCollider>().radius) / hyp) * (temp.y - gameObject.GetComponent<SphereCollider>().radius);
         jsM.transform.localPosition = jsmPos;
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("In");
-        if (other.tag == "joystickMov")
+        if (other.gameObject.tag == "joystickMov")
         {
             inJS = true;
         }
@@ -119,9 +121,8 @@ public class joystickScript : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Out");
-        if (other.tag == "joystickMov")
+        if (other.gameObject.tag == "joystickMov")
         {
-            
             inJS = false;
         }
     }
