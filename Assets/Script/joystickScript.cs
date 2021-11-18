@@ -123,7 +123,7 @@ public class joystickScript : MonoBehaviour
         Debug.Log("Out");
         if (other.gameObject.tag == "joystickMov")
         {
-            inJS = false;
+            //inJS = false;
         }
     }
 }
