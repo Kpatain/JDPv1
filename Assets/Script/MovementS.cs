@@ -10,6 +10,8 @@ public class MovementS : MonoBehaviour
     public float velocity;
     public float maxVelocity;
     Vector3 oldPosition = Vector3.zero;
+    Vector3 direction;
+    public Joystick joystick;
 
     //
     bool canPlay = true;
@@ -24,7 +26,9 @@ public class MovementS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = jsM.transform.position - jsF.transform.position;
+
+        direction.x = joystick.Horizontal*2;
+        direction.z = joystick.Vertical*2;
 
 
         direction.y = 0;
