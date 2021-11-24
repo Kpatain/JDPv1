@@ -38,19 +38,6 @@ public class MovementS : MonoBehaviour
         }
         this.transform.position += temp;
 
-        if (oldPosition == gameObject.transform.position && canPlay)
-        {
-            gameObject.GetComponentInChildren<Light>().intensity = 39;
-            gameObject.GetComponent<Animator>().enabled = true;
-            gameObject.GetComponent<Animator>().SetTrigger("validation");
-            canPlay = false;
-            Invoke("animationOneTime", 5f);
-        }
-        else if (oldPosition != gameObject.transform.position)
-        {
-            gameObject.GetComponent<Animator>().enabled = false;
-            gameObject.GetComponentInChildren<Light>().intensity = 0;
-        };
 
         oldPosition = gameObject.transform.position;
     }
