@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementS : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class MovementS : MonoBehaviour
     Vector3 direction;
     public Joystick joystick;
 
-    //
-    bool canPlay = true;
+    [SerializeField] Image lys;
+
 
 
     // Start is called before the first frame update
@@ -44,9 +45,13 @@ public class MovementS : MonoBehaviour
         oldPosition = gameObject.transform.position;
     }
 
-    void animationOneTime()
+
+    private void OnTriggerEnter(Collider other)
     {
-        canPlay = true;
+        if (other.gameObject.tag == "lys")
+        {
+            lys.GetComponent<Animator>().SetTrigger("enter");
+        }
     }
 
 }

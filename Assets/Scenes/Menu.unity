@@ -1666,7 +1666,7 @@ ParticleSystemForceField:
     m_GravityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.33
+      scalar: 0.14
       minScalar: 1
       maxCurve:
         serializedVersion: 2

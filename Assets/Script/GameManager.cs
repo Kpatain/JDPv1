@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,5 +19,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void hudFlowers(Image hud)
+    {
+
+    }
+
+    public void pause(Image img)
+    {
+        img.GetComponent<Animator>().SetTrigger("enter");
+    }
+
+    public void retourPause(Image img)
+    {
+        img.GetComponent<Animator>().SetTrigger("out");
     }
 }
