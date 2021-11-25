@@ -20,8 +20,8 @@ public class playerScript : MonoBehaviour
 
     void Update()
     {
-        Movement();
-        maxVelo();
+        //Movement();
+        //maxVelo();
 
     }
 

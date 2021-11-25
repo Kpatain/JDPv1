@@ -5,8 +5,6 @@ using UnityEngine;
 public class MovementS : MonoBehaviour
 {
 
-    [SerializeField] SpriteRenderer jsM;
-    [SerializeField] SpriteRenderer jsF;
     public float velocity;
     public float maxVelocity;
     Vector3 oldPosition = Vector3.zero;
@@ -27,8 +25,8 @@ public class MovementS : MonoBehaviour
     void Update()
     {
 
-        direction.x = joystick.Horizontal*2;
-        direction.z = joystick.Vertical*2;
+        direction.x = joystick.Horizontal*4;
+        direction.z = joystick.Vertical*4;
 
 
         direction.y = 0;
