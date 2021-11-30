@@ -34,11 +34,16 @@ public class MovementS : MonoBehaviour
         //gameObject.GetComponent<ParticleSystemForceField>().rotationSpeed = 12444.73f * Time.deltaTime;
     }
 
+    private void FixedUpdate()
+    {
+        m_System.Simulate(Time.fixedDeltaTime, true, false, true);
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-
+        
         direction.x = joystick.Horizontal*4;
         direction.z = joystick.Vertical*4;
 
