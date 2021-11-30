@@ -13,18 +13,31 @@ public class MovementS : MonoBehaviour
     public Joystick joystick;
 
     [SerializeField] Image lys;
+    [SerializeField] Camera cam;
+
+
+    public Vector3 destroyPosition;
+    public Vector3 buff;
+
+    [SerializeField] ParticleSystem m_System;
+    ParticleSystem.Particle[] m_Particles;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //gameObject.GetComponent<ParticleSystemForceField>().gravity = 505.26f * Time.deltaTime;
+        //gameObject.GetComponent<ParticleSystemForceField>().gravityFocus = 18.421f * Time.deltaTime;
+        //gameObject.GetComponent<ParticleSystemForceField>().rotationAttraction = 31.57894f * Time.deltaTime;
+        //gameObject.GetComponent<ParticleSystemForceField>().rotationRandomness = new Vector2(31.57894f * Time.deltaTime,0);
+        //gameObject.GetComponent<ParticleSystemForceField>().rotationSpeed = 12444.73f * Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
+
 
         direction.x = joystick.Horizontal*4;
         direction.z = joystick.Vertical*4;
@@ -45,6 +58,36 @@ public class MovementS : MonoBehaviour
         oldPosition = gameObject.transform.position;
     }
 
+    private void LateUpdate()
+    {
+        InitializeIfNeeded();
+        int numParticlesAlive = m_System.GetParticles(m_Particles);
+        buff = Vector3.zero;
+        for (int i = 0; i < numParticlesAlive; i++)
+        {
+            Debug.Log(m_Particles[i].position.x);
+            buff.x += (float)m_Particles[i].position.x + m_System.transform.position.x;
+            buff.z += (float)m_Particles[i].position.z + m_System.transform.position.z;
+        }
+
+        
+        buff.x /= numParticlesAlive;
+        buff.z /= numParticlesAlive;
+        buff.z -= 20f;
+        buff.y = cam.transform.position.y;
+        cam.transform.position = buff;
+
+        m_System.SetParticles(m_Particles, numParticlesAlive);
+    }
+
+    void InitializeIfNeeded()
+    {
+        if (m_System == null)
+            m_System = GetComponent<ParticleSystem>();
+
+        if (m_Particles == null || m_Particles.Length < m_System.main.maxParticles)
+            m_Particles = new ParticleSystem.Particle[m_System.main.maxParticles];
+    }
 
     private void OnTriggerEnter(Collider other)
     {
