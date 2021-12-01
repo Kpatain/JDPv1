@@ -11,8 +11,8 @@ public class MovementScriptFinal : MonoBehaviour
     Vector3 direction;
     public Joystick joystick;
 
-    [SerializeField] Image lys;
-    [SerializeField] Camera cam;
+    [SerializeField] public Image lys;
+    [SerializeField] public Camera cam;
 
 
     public Vector3 destroyPosition;
@@ -70,12 +70,6 @@ public class MovementScriptFinal : MonoBehaviour
         cam.transform.position = buff;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "lys")
-        {
-            lys.GetComponent<Animator>().SetTrigger("enter");
-        }
-    }
+    
 
 }

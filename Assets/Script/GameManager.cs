@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class GameManager : MonoBehaviour
 
     public bool ui = false;
     float moy = 0;
+    [SerializeField] GameObject firework;
 
     [SerializeField] ParticleSystem paperPlane;
     [SerializeField] public Color[] paperPColors;
+    [SerializeField] GameObject player;
     Image img2;
 
 
@@ -51,6 +54,16 @@ public class GameManager : MonoBehaviour
         ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
     }
+
+    public void lier(Image img)
+    {
+        ui = false;
+        img.GetComponent<Animator>().SetTrigger("out");
+        GameObject vfx = Instantiate(firework, player.transform.GetChild(0).transform);
+        Debug.Log("test");
+        Destroy(vfx, 5f);
+    }
+
 
     private void Awake()
     {
