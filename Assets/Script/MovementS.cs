@@ -70,7 +70,6 @@ public class MovementS : MonoBehaviour
         buff = Vector3.zero;
         for (int i = 0; i < numParticlesAlive; i++)
         {
-            Debug.Log(m_Particles[i].position.x);
             buff.x += (float)m_Particles[i].position.x + m_System.transform.position.x;
             buff.z += (float)m_Particles[i].position.z + m_System.transform.position.z;
         }

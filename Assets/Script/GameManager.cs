@@ -5,18 +5,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
 
     public bool ui = false;
     float moy = 0;
 
     [SerializeField] ParticleSystem paperPlane;
+    [SerializeField] public Color[] paperPColors;
     Image img2;
 
-    private void Awake()
-    {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 30;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,5 +52,8 @@ public class GameManager : MonoBehaviour
         img.GetComponent<Animator>().SetTrigger("out");
     }
 
-    
+    private void Awake()
+    {
+        Instance = this;
+    }
 }
