@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,16 +14,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject firework;
 
     [SerializeField] ParticleSystem paperPlane;
+    [SerializeField] GameObject video;
     [SerializeField] public Color[] paperPColors;
     [SerializeField] public Camera cam;
     [SerializeField] GameObject player;
+    [SerializeField] public Material trprt;
     Image img2;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        video.SetActive(true);
+        video.transform.GetChild(0).GetComponent<VideoPlayer>().Play();
+        Invoke("stopVideo", 50f);
+        Destroy(video, 50f);
     }
 
     // Update is called once per frame
@@ -30,15 +35,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             retourPause(img2);
         }
 
 
         
         moy += Time.deltaTime;
-
-        
-
     }
 
     public void hudFlowers(Image hud)
@@ -68,7 +71,20 @@ public class GameManager : MonoBehaviour
         Destroy(vfx, 5f);
     }
 
-    
+    public void skipVideo()
+    {
+        if (video != null)
+        {
+            stopVideo();
+            Destroy(video);
+        }
+    }
+
+    private void stopVideo()
+    {
+        video.transform.GetChild(0).GetComponent<VideoPlayer>().Stop();
+        
+    }
 
 private void Awake()
     {

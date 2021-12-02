@@ -19,6 +19,8 @@ public class MovementScriptFinal : MonoBehaviour
     public Vector3 buff;
     private Vector3 oldPosition = Vector3.zero;
 
+    
+
 
     [SerializeField] GameObject planes;
 
@@ -58,14 +60,16 @@ public class MovementScriptFinal : MonoBehaviour
     {
         for (int i = 0; i < planes.transform.childCount; i++)
         {
-            buff.x += planes.transform.GetChild(i).transform.position.x;
-            buff.z += planes.transform.GetChild(i).transform.position.z;
+            buff += planes.transform.GetChild(i).transform.position;
+
         }
 
 
-        buff.x /= planes.transform.childCount;
-        buff.z /= planes.transform.childCount;
-        buff.z -= 20f;
+        buff /= planes.transform.childCount;
+
+
+        transform.GetChild(0).transform.position = buff;
+        buff.z -= 15f;
         buff.y = cam.transform.position.y;
         cam.transform.position = buff;
     }

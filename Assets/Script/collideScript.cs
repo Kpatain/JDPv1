@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class collideScript : MonoBehaviour
 {
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,10 +15,8 @@ public class collideScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 buff = transform.parent.GetComponent<MovementScriptFinal>().cam.transform.position;
-        buff.z += 20f;
-        buff.y = 3f;
-        transform.position = buff;
+
+
     }
 
     private void OnTriggerEnter(Collider other)

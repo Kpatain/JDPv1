@@ -7,6 +7,7 @@ TagManager:
   - joystick
   - joystickMov
   - lys
+  - canmat
   layers:
   - Default
   - TransparentFX
