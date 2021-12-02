@@ -16,6 +16,8 @@ public class paerplane : MonoBehaviour
     public float smoothTimeRotation = 0f;
     private Vector3 velocity = Vector3.one;
 
+    private Color colorMAt;
+    private GameObject betw;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,21 @@ public class paerplane : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, objectif.transform.position, ref velocity, smoothTime);
         transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation));
+
+        Vector3 dir = (GameManager.Instance.cam.transform.position - transform.position).normalized;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, dir * hit.distance, Color.red);
+            betw = hit.transform.gameObject;
+            colorMAt = betw.GetComponent<Material>().color;
+            colorMAt.a *= 0.5f;
+            betw.GetComponent<Material>().color = colorMAt;
+
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, dir * 1000, Color.white);
+        }
     }
 }

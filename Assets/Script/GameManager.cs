@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] ParticleSystem paperPlane;
     [SerializeField] public Color[] paperPColors;
+    [SerializeField] public Camera cam;
     [SerializeField] GameObject player;
     Image img2;
 
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour
 
         
         moy += Time.deltaTime;
+
+        
+
     }
 
     public void hudFlowers(Image hud)
@@ -64,8 +68,9 @@ public class GameManager : MonoBehaviour
         Destroy(vfx, 5f);
     }
 
+    
 
-    private void Awake()
+private void Awake()
     {
         Instance = this;
     }
