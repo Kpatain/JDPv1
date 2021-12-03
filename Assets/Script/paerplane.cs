@@ -60,7 +60,7 @@ public class paerplane : MonoBehaviour
     {
         if (other.gameObject.tag == "canmat")
         {
-            other.GetComponent<MeshRenderer>().material = colorMAt;
+            other.GetComponent<MeshRenderer>().material = colorMAt; 
         }
     }
 

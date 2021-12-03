@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class MovementScriptFinal : MonoBehaviour
@@ -50,10 +51,44 @@ public class MovementScriptFinal : MonoBehaviour
         {
             temp = direction.normalized * maxVelocity * Time.deltaTime;
         }
+
+        RaycastHit hit2;
+        Ray downRay2 = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(downRay2, out hit2))
+        {
+            Debug.Log(hit2.distance);
+            if (hit2.distance < 1f && hit2.transform.gameObject.tag == "sol")
+            {
+                temp.x -= temp.x*2f;
+                temp.z -= temp.z*2f;
+           }
+
+        }
         this.transform.position += temp;
 
-
         oldPosition = gameObject.transform.position;
+
+
+        //sol position
+
+        RaycastHit hit;
+        Ray downRay = new Ray(transform.position, -Vector3.up);
+
+        if (Physics.Raycast(downRay, out hit))
+        {
+            if (hit.transform.gameObject.tag == "sol")
+            {
+                Debug.Log(hit.distance);
+                Vector3 pos = transform.position;
+                pos.y += 1.690102f - hit.distance;
+                transform.position = pos;
+            }
+        }
+
+
+        
+
     }
 
     void CameraMov()
@@ -69,8 +104,9 @@ public class MovementScriptFinal : MonoBehaviour
 
 
         transform.GetChild(0).transform.position = buff;
-        buff.z -= 15f;
-        buff.y = cam.transform.position.y;
+        
+        buff.z -= 60f;
+        buff.y += 50;
         cam.transform.position = buff;
     }
 

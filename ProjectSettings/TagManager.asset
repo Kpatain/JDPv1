@@ -8,6 +8,7 @@ TagManager:
   - joystickMov
   - lys
   - canmat
+  - sol
   layers:
   - Default
   - TransparentFX

@@ -82,7 +82,10 @@ public class GameManager : MonoBehaviour
 
     private void stopVideo()
     {
-        video.transform.GetChild(0).GetComponent<VideoPlayer>().Stop();
+        if (video != null)
+        {
+            video.transform.GetChild(0).GetComponent<VideoPlayer>().Stop();
+        }
         
     }
 
