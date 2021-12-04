@@ -27,11 +27,6 @@ public class MovementS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<ParticleSystemForceField>().gravity = 505.26f * Time.deltaTime;
-        //gameObject.GetComponent<ParticleSystemForceField>().gravityFocus = 18.421f * Time.deltaTime;
-        //gameObject.GetComponent<ParticleSystemForceField>().rotationAttraction = 31.57894f * Time.deltaTime;
-        //gameObject.GetComponent<ParticleSystemForceField>().rotationRandomness = new Vector2(31.57894f * Time.deltaTime,0);
-        //gameObject.GetComponent<ParticleSystemForceField>().rotationSpeed = 12444.73f * Time.deltaTime;
     }
 
     private void FixedUpdate()

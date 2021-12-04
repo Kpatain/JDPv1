@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class paerplane : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class paerplane : MonoBehaviour
     void Update()
     {
 
+        gameObject.GetComponent<NavMeshAgent>().destination = objectif.transform.position;
+
         buff1 = gameObject.transform.position;
         buff2 = objectif.transform.position;
         norme = buff2 - buff1;
@@ -40,9 +43,8 @@ public class paerplane : MonoBehaviour
         obj.x += Random.Range(-2f, 2f);
         obj.y += Random.Range(-2f, 2f);
 
-        transform.position = Vector3.SmoothDamp(transform.position, objectif.transform.position, ref velocity, smoothTime);
+        //transform.position = Vector3.SmoothDamp(transform.position, obj.transform.position, ref velocity, smoothTime);
         transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation));
-
         
     }
 

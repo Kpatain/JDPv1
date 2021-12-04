@@ -57,11 +57,10 @@ public class MovementScriptFinal : MonoBehaviour
 
         if (Physics.Raycast(downRay2, out hit2))
         {
-            Debug.Log(hit2.distance);
             if (hit2.distance < 1f && hit2.transform.gameObject.tag == "sol")
             {
-                temp.x -= temp.x*2f;
-                temp.z -= temp.z*2f;
+                //temp.x -= temp.x*2f;
+                //temp.z -= temp.z*2f;
            }
 
         }
@@ -79,16 +78,11 @@ public class MovementScriptFinal : MonoBehaviour
         {
             if (hit.transform.gameObject.tag == "sol")
             {
-                Debug.Log(hit.distance);
                 Vector3 pos = transform.position;
                 pos.y += 1.690102f - hit.distance;
                 transform.position = pos;
             }
         }
-
-
-        
-
     }
 
     void CameraMov()
