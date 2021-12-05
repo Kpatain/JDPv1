@@ -22,6 +22,15 @@ public class GameManager : MonoBehaviour
     Image img2;
 
 
+    //QUETE
+    public bool lysbool = true;
+    public bool roseroseool = false;
+    public bool narcissebool = false;
+    public bool heleniebool = false;
+    public bool amarbool = false;
+    public bool cactusbool = false;
+    public bool tulipebool = false;
+
     void Start()
     {
         video.SetActive(true);
@@ -86,10 +95,14 @@ public class GameManager : MonoBehaviour
         {
             video.transform.GetChild(0).GetComponent<VideoPlayer>().Stop();
         }
-        
+       
     }
 
-private void Awake()
+    ///EVENT FLEUR QUETE
+    ///
+
+
+    private void Awake()
     {
         Instance = this;
     }
