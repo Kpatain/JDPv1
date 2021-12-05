@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7968046804925505861}
   - component: {fileID: 4989894887169762552}
+  - component: {fileID: 7073223755596744160}
   m_Layer: 0
   m_Name: paper
   m_TagString: Untagged
@@ -83,6 +84,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7073223755596744160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4041854388960908999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7963383650044278134
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +114,6 @@ GameObject:
   - component: {fileID: 7963383650044278132}
   - component: {fileID: 8640266619736985237}
   - component: {fileID: 712767551075343630}
-  - component: {fileID: 2272199472257825939}
   - component: {fileID: 3160227195623882437}
   - component: {fileID: 4048469500255168839}
   m_Layer: 0
@@ -260,19 +278,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!135 &2272199472257825939
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7963383650044278134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 37.28
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &3160227195623882437
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -283,7 +288,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3.4
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120

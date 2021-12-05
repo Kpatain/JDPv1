@@ -43,27 +43,9 @@ public class paerplane : MonoBehaviour
         obj.x += Random.Range(-2f, 2f);
         obj.y += Random.Range(-2f, 2f);
 
-        //transform.position = Vector3.SmoothDamp(transform.position, obj.transform.position, ref velocity, smoothTime);
+        //transform.position = Vector3.SmoothDamp(transform.position, obj, ref velocity, smoothTime);
         transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation));
         
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "canmat")
-        {
-            colorMAt = other.GetComponent<MeshRenderer>().material;
-            other.GetComponent<MeshRenderer>().material = GameManager.Instance.trprt;
-            
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "canmat")
-        {
-            other.GetComponent<MeshRenderer>().material = colorMAt; 
-        }
     }
 
 }

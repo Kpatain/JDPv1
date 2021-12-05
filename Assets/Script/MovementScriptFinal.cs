@@ -52,19 +52,8 @@ public class MovementScriptFinal : MonoBehaviour
             temp = direction.normalized * maxVelocity * Time.deltaTime;
         }
 
-        RaycastHit hit2;
-        Ray downRay2 = new Ray(transform.position, transform.forward);
 
-        if (Physics.Raycast(downRay2, out hit2))
-        {
-            if (hit2.distance < 1f && hit2.transform.gameObject.tag == "sol")
-            {
-                //temp.x -= temp.x*2f;
-                //temp.z -= temp.z*2f;
-           }
-
-        }
-        this.transform.position += temp;
+        Step(temp);
 
         oldPosition = gameObject.transform.position;
 
@@ -80,10 +69,28 @@ public class MovementScriptFinal : MonoBehaviour
             {
                 Vector3 pos = transform.position;
                 pos.y += 1.690102f - hit.distance;
-                transform.position = pos;
+                //transform.position = pos;
             }
         }
     }
+
+    void Step(Vector3 temp)
+    {
+        Vector3 newposition = transform.position + temp;
+        NavMeshHit hit;
+        bool isValid = NavMesh.SamplePosition(newposition, out hit, 0.3f, NavMesh.AllAreas);
+        if (isValid)
+        {
+            
+            this.transform.position += temp;
+        }
+        else
+        {
+            Debug.Log("notvalid");
+        }
+    }
+
+
 
     void CameraMov()
     {
