@@ -106,8 +106,8 @@ public class MovementScriptFinal : MonoBehaviour
 
         transform.GetChild(0).transform.position = buff;
         
-        //buff.z -= 60f;
-        buff.y += 20;
+        buff.z -= 20f;
+        buff.y += 15;
         cam.transform.position = buff;
     }
 
