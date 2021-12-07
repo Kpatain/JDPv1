@@ -17,6 +17,8 @@ public class canvas_event : MonoBehaviour
     [SerializeField] [TextArea] string queteTexte1;
     [SerializeField] [TextArea] string queteTexte2;
 
+    private bool saw = true;
+
     // Start is called before the first frame update
     void Start()
     {
