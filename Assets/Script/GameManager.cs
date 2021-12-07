@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     float moy = 0;
     [SerializeField] GameObject firework;
 
-    [SerializeField] ParticleSystem paperPlane;
+    [SerializeField] Canvas canvas;
     [SerializeField] GameObject video;
     [SerializeField] public Color[] paperPColors;
     [SerializeField] public Camera cam;
@@ -22,17 +22,13 @@ public class GameManager : MonoBehaviour
     Image img2;
 
 
-    //QUETE
-    public bool lysbool = true;
-    public bool roseroseool = false;
-    public bool narcissebool = false;
-    public bool heleniebool = false;
-    public bool amarbool = false;
-    public bool cactusbool = false;
-    public bool tulipebool = false;
+
 
     void Start()
     {
+
+
+        Application.targetFrameRate = 30;
         video.SetActive(true);
         video.transform.GetChild(0).GetComponent<VideoPlayer>().Play();
         Invoke("stopVideo", 50f);
@@ -74,6 +70,15 @@ public class GameManager : MonoBehaviour
     public void lier(Image img)
     {
         ui = false;
+        for(int i =0; i < canvas.GetComponent<canvas_event>().quete.Count; i++)
+        {
+            if (img == canvas.GetComponent<canvas_event>().quete[i])
+            {
+                canvas.GetComponent<canvas_event>().quete[i+1].GetComponent<FlowerScript>().stade = 2;
+            }
+        }
+        
+        img.GetComponent<FlowerScript>().stade = 3;
         img.GetComponent<Animator>().SetTrigger("out");
         GameObject vfx = Instantiate(firework, player.transform.GetChild(0).transform);
         Debug.Log("test");
