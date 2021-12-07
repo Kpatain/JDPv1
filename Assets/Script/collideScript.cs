@@ -21,10 +21,11 @@ public class collideScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "lys")
+        if (other.gameObject.tag == "lys" && !GameManager.Instance.ui)
         {
             Debug.Log("collide");
             transform.parent.GetComponent<MovementScriptFinal>().lys.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.ui = true;
         }
     }
 }

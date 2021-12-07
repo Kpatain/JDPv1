@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject firework;
 
     [SerializeField] Canvas canvas;
+    [SerializeField] Button quetebutton;
     [SerializeField] GameObject video;
     [SerializeField] public Color[] paperPColors;
     [SerializeField] public Camera cam;
@@ -59,16 +60,26 @@ public class GameManager : MonoBehaviour
         img.GetComponent<Animator>().SetTrigger("enter");
         ui = true;
         img2 = img;
+
+        if (img == canvas.GetComponent<canvas_event>().QueteImage)
+        {
+            quetebutton.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else 
+        {
+            Debug.Log("nop");
+        }
     }
 
     public void retourPause(Image img)
     {
-        ui = false;
+        Invoke("reactivateUI", 2f);
         img.GetComponent<Animator>().SetTrigger("out");
     }
 
     public void lier(Image img)
     {
+        quetebutton.transform.GetChild(0).gameObject.SetActive(true);
         ui = false;
         for(int i =0; i < canvas.GetComponent<canvas_event>().quete.Count; i++)
         {
@@ -89,6 +100,7 @@ public class GameManager : MonoBehaviour
     {
         if (video != null)
         {
+
             stopVideo();
             Destroy(video);
         }
@@ -103,8 +115,10 @@ public class GameManager : MonoBehaviour
        
     }
 
-    ///EVENT FLEUR QUETE
-    ///
+    void reactivateUI()
+    {
+        ui = false;
+    }
 
 
     private void Awake()

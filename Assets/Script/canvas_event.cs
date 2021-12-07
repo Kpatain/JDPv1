@@ -8,7 +8,7 @@ public class canvas_event : MonoBehaviour
 {
     
     [SerializeField] Image Pause;
-    [SerializeField] Image QueteImage;
+    [SerializeField] public Image QueteImage;
     [SerializeField] Image Carte;
     [SerializeField] TextMeshProUGUI queteText;
 

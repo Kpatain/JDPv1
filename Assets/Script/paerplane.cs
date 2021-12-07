@@ -19,11 +19,12 @@ public class paerplane : MonoBehaviour
 
 
     private Material colorMAt;
-
+    float rdm;
 
     // Start is called before the first frame update
     void Start()
     {
+        rdm = Random.Range(0, 10000);
         smoothTime = Random.Range(0.2f, 0.5f);
         smoothTimeRotation = Random.Range(0.1f, 0.4f);
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = GameManager.Instance.paperPColors[index];
@@ -32,18 +33,10 @@ public class paerplane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Vector3 buff = transform.GetChild(0).transform.localPosition;
+        buff.y = Mathf.PerlinNoise(rdm, Time.time)*10;
+        transform.GetChild(0).transform.localPosition = buff;
         gameObject.GetComponent<NavMeshAgent>().destination = objectif.transform.position;
-
-        buff1 = gameObject.transform.position;
-        buff2 = objectif.transform.position;
-        norme = buff2 - buff1;
-        obj = objectif.transform.position;
-        obj.y += Random.Range(-2f, 2f);
-        obj.x += Random.Range(-2f, 2f);
-        obj.y += Random.Range(-2f, 2f);
-
-        //transform.position = Vector3.SmoothDamp(transform.position, obj, ref velocity, smoothTime);
         transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation));
         
     }
