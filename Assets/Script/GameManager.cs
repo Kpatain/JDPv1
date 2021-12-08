@@ -40,10 +40,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         //coup dispo
         canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("cliquerestant").GetComponent<TMP_Text>().text = coups.ToString() + " COUP(S) DISPONIBLE(S)";
-
+        if (coups == 0)
+        {
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -88,6 +92,9 @@ public class GameManager : MonoBehaviour
 
     public void lier(Image img)
     {
+        canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
+        canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
+        canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
         coups += 1;
         quetebutton.transform.GetChild(0).gameObject.SetActive(true);
         ui = false;
@@ -132,5 +139,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void piecePuzzle(Button btn)
+    {
+        if (coups > 0)
+        {
+            coups -= 1;
+            Destroy(btn);
+        }
+        
     }
 }

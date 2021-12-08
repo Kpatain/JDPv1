@@ -51,11 +51,13 @@ public class canvas_event : MonoBehaviour
                 if (i == 0 && once)
                 {
                     PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
+                    PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
                     QueteImage.transform.Find("Image").gameObject.SetActive(true);
                     once = false;
                 }
                 else if (i == 3 && quete[i-1].GetComponent<FlowerScript>().stade == 3 && once2)
                 {
+                    PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
                     PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
                     QueteImage.transform.Find("Image").gameObject.SetActive(true);
                     once2 = false;
