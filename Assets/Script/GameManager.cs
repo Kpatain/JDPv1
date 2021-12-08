@@ -45,8 +45,16 @@ public class GameManager : MonoBehaviour
         canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("cliquerestant").GetComponent<TMP_Text>().text = coups.ToString() + " COUP(S) DISPONIBLE(S)";
         if (coups == 0)
         {
-            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
-            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
+            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
+            {
+                canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
+            }
+
+            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
+            {
+                canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
+            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -146,7 +154,7 @@ public class GameManager : MonoBehaviour
         if (coups > 0)
         {
             coups -= 1;
-            Destroy(btn);
+            Destroy(btn.gameObject);
         }
         
     }
