@@ -37,8 +37,6 @@ public class paerplane : MonoBehaviour
         buff.y = Mathf.PerlinNoise(rdm, Time.time)*10;
         transform.GetChild(0).transform.localPosition = buff;
         gameObject.GetComponent<NavMeshAgent>().destination = objectif.transform.position;
-        transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation));
-        
+        transform.rotation = Quaternion.LookRotation(Vector3.SmoothDamp(transform.forward, norme.normalized, ref velocity, smoothTimeRotation)); 
     }
-
 }

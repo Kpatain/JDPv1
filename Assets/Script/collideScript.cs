@@ -23,7 +23,6 @@ public class collideScript : MonoBehaviour
     {
         if (other.gameObject.tag == "lys" && !GameManager.Instance.ui)
         {
-            Debug.Log("collide");
             transform.parent.GetComponent<MovementScriptFinal>().lys.GetComponent<Animator>().SetTrigger("enter");
             GameManager.Instance.ui = true;
         }

@@ -9,6 +9,7 @@ public class canvas_event : MonoBehaviour
     
     [SerializeField] Image Pause;
     [SerializeField] public Image QueteImage;
+    [SerializeField] public Image PuzzleImage;
     [SerializeField] Image Carte;
     [SerializeField] TextMeshProUGUI queteText;
 
@@ -17,7 +18,10 @@ public class canvas_event : MonoBehaviour
     [SerializeField] [TextArea] string queteTexte1;
     [SerializeField] [TextArea] string queteTexte2;
 
-    private bool saw = true;
+    bool once = true;
+    bool once2 = true;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +40,25 @@ public class canvas_event : MonoBehaviour
                 {
                     queteText.text = queteTexte1;
                 }
+
                 else
                 {
                     queteText.text = queteTexte2;
+                }
+            }
+            else if (quete[i].GetComponent<FlowerScript>().stade == 3)
+            {
+                if (i == 0 && once)
+                {
+                    PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
+                    QueteImage.transform.Find("Image").gameObject.SetActive(true);
+                    once = false;
+                }
+                else if (i == 3 && quete[i-1].GetComponent<FlowerScript>().stade == 3 && once2)
+                {
+                    PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
+                    QueteImage.transform.Find("Image").gameObject.SetActive(true);
+                    once2 = false;
                 }
             }
 

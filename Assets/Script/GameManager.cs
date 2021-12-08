@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
@@ -22,16 +23,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Material trprt;
     Image img2;
 
-
+    int coups;
 
 
     void Start()
     {
 
-
+        coups = 0;
         Application.targetFrameRate = 30;
         video.SetActive(true);
-        video.transform.GetChild(0).GetComponent<VideoPlayer>().Play();
+        video.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
         Invoke("stopVideo", 50f);
         Destroy(video, 50f);
     }
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //coup dispo
+        canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("cliquerestant").GetComponent<TMP_Text>().text = coups.ToString() + " COUP(S) DISPONIBLE(S)";
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             
@@ -57,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void pause(Image img)
     {
+        Debug.Log("menu");
         img.GetComponent<Animator>().SetTrigger("enter");
         ui = true;
         img2 = img;
@@ -65,9 +72,10 @@ public class GameManager : MonoBehaviour
         {
             quetebutton.transform.GetChild(0).gameObject.SetActive(false);
         }
-        else 
+
+        if (img.name == canvas.GetComponent<canvas_event>().PuzzleImage.name)
         {
-            Debug.Log("nop");
+            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(false);
         }
     }
 
@@ -75,10 +83,12 @@ public class GameManager : MonoBehaviour
     {
         Invoke("reactivateUI", 2f);
         img.GetComponent<Animator>().SetTrigger("out");
+
     }
 
     public void lier(Image img)
     {
+        coups += 1;
         quetebutton.transform.GetChild(0).gameObject.SetActive(true);
         ui = false;
         for(int i =0; i < canvas.GetComponent<canvas_event>().quete.Count; i++)
@@ -91,9 +101,7 @@ public class GameManager : MonoBehaviour
         
         img.GetComponent<FlowerScript>().stade = 3;
         img.GetComponent<Animator>().SetTrigger("out");
-        GameObject vfx = Instantiate(firework, player.transform.GetChild(0).transform);
-        Debug.Log("test");
-        Destroy(vfx, 5f);
+
     }
 
     public void skipVideo()
@@ -110,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         if (video != null)
         {
-            video.transform.GetChild(0).GetComponent<VideoPlayer>().Stop();
+            video.transform.GetChild(1).GetComponent<VideoPlayer>().Stop();
         }
        
     }
