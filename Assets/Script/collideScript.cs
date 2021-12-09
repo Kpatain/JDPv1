@@ -36,6 +36,14 @@ public class collideScript : MonoBehaviour
             recollide = false;
             Invoke("recollideF", 10f);
         }
+
+        if (other.gameObject.tag == "helenie" && !GameManager.Instance.ui && recollide)
+        {
+            transform.parent.GetComponent<MovementScriptFinal>().helenie.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.ui = true;
+            recollide = false;
+            Invoke("recollideF", 10f);
+        }
     }
 
     void recollideF()

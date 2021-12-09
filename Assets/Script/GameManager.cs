@@ -102,8 +102,15 @@ public class GameManager : MonoBehaviour
     {
         firework.transform.position = collide.transform.position;
         firework.Play();
-        canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
-        canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
+        if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
+        {
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
+        }
+
+        if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") != null)
+        {
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
+        }
         canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
         coups += 1;
         quetebutton.transform.GetChild(0).gameObject.SetActive(true);
@@ -112,7 +119,7 @@ public class GameManager : MonoBehaviour
         {
             if (img == canvas.GetComponent<canvas_event>().quete[i])
             {
-                canvas.GetComponent<canvas_event>().quete[i+1].GetComponent<FlowerScript>().stade = 2;
+                canvas.GetComponent<canvas_event>().quete[i + 1].GetComponent<FlowerScript>().stade = 2;  
             }
         }
         
