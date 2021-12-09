@@ -13,6 +13,7 @@ public class MovementScriptFinal : MonoBehaviour
     public Joystick joystick;
 
     [SerializeField] public Image lys;
+    [SerializeField] public Image amar;
     [SerializeField] public Camera cam;
 
 

@@ -9,6 +9,7 @@ TagManager:
   - lys
   - canmat
   - sol
+  - amar
   layers:
   - Default
   - TransparentFX

@@ -151,5 +151,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    public void piecePuzzle(Button btn)
+    {
+        if (coups > 0)
+        {
+            coups -= 1;
+            Destroy(btn.gameObject);
+        }
 
+    }
 }

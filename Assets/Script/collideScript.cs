@@ -28,6 +28,14 @@ public class collideScript : MonoBehaviour
             recollide = false;
             Invoke("recollideF", 10f);
         }
+
+        if (other.gameObject.tag == "amar" && !GameManager.Instance.ui && recollide)
+        {
+            transform.parent.GetComponent<MovementScriptFinal>().amar.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.ui = true;
+            recollide = false;
+            Invoke("recollideF", 10f);
+        }
     }
 
     void recollideF()
