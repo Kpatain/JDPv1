@@ -22,10 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Material trprt;
     [SerializeField] ParticleSystem firework;
     [SerializeField] GameObject collide;
-    Image img2;
 
     int coups;
-
+    Image img2;
 
     void Start()
     {
@@ -57,7 +56,7 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && ui)
         {
             
             retourPause(img2);
@@ -68,10 +67,6 @@ public class GameManager : MonoBehaviour
         moy += Time.deltaTime;
     }
 
-    public void hudFlowers(Image hud)
-    {
-
-    }
 
     public void pause(Image img)
     {
@@ -93,9 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void retourPause(Image img)
     {
-        Invoke("reactivateUI", 2f);
+        ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
-
     }
 
     public void lier(Image img)
@@ -111,13 +105,16 @@ public class GameManager : MonoBehaviour
         {
             canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
         }
+
         canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
+
         coups += 1;
+
         quetebutton.transform.GetChild(0).gameObject.SetActive(true);
-        ui = false;
+
         for(int i =0; i < canvas.GetComponent<canvas_event>().quete.Count; i++)
         {
-            if (img == canvas.GetComponent<canvas_event>().quete[i])
+            if (img == canvas.GetComponent<canvas_event>().quete[i] && img.name != "Helenie_Menu")
             {
                 canvas.GetComponent<canvas_event>().quete[i + 1].GetComponent<FlowerScript>().stade = 2;  
             }
@@ -147,10 +144,6 @@ public class GameManager : MonoBehaviour
        
     }
 
-    void reactivateUI()
-    {
-        ui = false;
-    }
 
 
     private void Awake()
