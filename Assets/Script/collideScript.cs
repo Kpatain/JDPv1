@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class collideScript : MonoBehaviour
 {
-    
 
+    bool recollide = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +21,17 @@ public class collideScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "lys" && !GameManager.Instance.ui)
+        if (other.gameObject.tag == "lys" && !GameManager.Instance.ui && recollide)
         {
             transform.parent.GetComponent<MovementScriptFinal>().lys.GetComponent<Animator>().SetTrigger("enter");
             GameManager.Instance.ui = true;
+            recollide = false;
+            Invoke("recollideF", 10f);
         }
+    }
+
+    void recollideF()
+    {
+        recollide = true;
     }
 }

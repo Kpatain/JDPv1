@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     public bool ui = false;
     float moy = 0;
-    [SerializeField] GameObject firework;
 
     [SerializeField] Canvas canvas;
     [SerializeField] Button quetebutton;
@@ -21,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Camera cam;
     [SerializeField] GameObject player;
     [SerializeField] public Material trprt;
+    [SerializeField] ParticleSystem firework;
+    [SerializeField] GameObject collide;
     Image img2;
 
     int coups;
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
         coups = 0;
         Application.targetFrameRate = 30;
         video.SetActive(true);
@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
 
     public void lier(Image img)
     {
+        firework.transform.position = collide.transform.position;
+        firework.Play();
         canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
         canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
         canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
@@ -149,13 +151,5 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void piecePuzzle(Button btn)
-    {
-        if (coups > 0)
-        {
-            coups -= 1;
-            Destroy(btn.gameObject);
-        }
-        
-    }
+
 }

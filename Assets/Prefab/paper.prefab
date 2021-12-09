@@ -254,7 +254,6 @@ GameObject:
   - component: {fileID: 7963383650044278132}
   - component: {fileID: 8640266619736985237}
   - component: {fileID: 3160227195623882437}
-  - component: {fileID: 4048469500255168839}
   m_Layer: 0
   m_Name: paper
   m_TagString: Untagged
@@ -331,20 +330,3 @@ NavMeshAgent:
   m_BaseOffset: 1.78
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4048469500255168839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7963383650044278134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bb9d2a28123b4948b3afef6dc6b718c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WallMaterial: {fileID: 2100000, guid: c92afeaad0d61bd4e8693ac87026f5fe, type: 2}
-  Camera: {fileID: 0}
-  Mask:
-    serializedVersion: 2
-    m_Bits: 0
