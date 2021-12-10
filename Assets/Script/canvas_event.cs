@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class canvas_event : MonoBehaviour
 {
     
-    [SerializeField] Image Pause;
+    [SerializeField] public Image Pause;
     [SerializeField] public Image QueteImage;
     [SerializeField] public Image PuzzleImage;
     [SerializeField] Image Carte;

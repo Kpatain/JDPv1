@@ -9,7 +9,6 @@ using UnityEngine.Video;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public bool ui = false;
     bool once = true;
     float moy = 0;
@@ -30,6 +29,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject helenieObj;
     public GameObject questFlower;
 
+    public bool jsMode = false;
+    public bool tapMode = true;
+
     int coups;
     Image img2;
 
@@ -46,7 +48,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));
+            
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000))
+            {
+                if(hit.transform.gameObject.tag == "sol" && !ui)
+                {
+                    player.transform.position = hit.point;
+                }
+            }
+
+        }
         //coup dispo
         canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("cliquerestant").GetComponent<TMP_Text>().text = coups.ToString() + " COUP(S) DISPONIBLE(S)";
         if (coups == 0)
@@ -98,7 +113,7 @@ public class GameManager : MonoBehaviour
         ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
 
-        if (once && img == canvas.GetComponent<canvas_event>().PuzzleImage)
+        if (once && img == canvas.GetComponent<canvas_event>().PuzzleImage && questFlower == amarObj)
         {
             tuto.transform.Find("8(2quete)").GetComponent<Animator>().SetTrigger("in");
             inTUto = true;
@@ -143,7 +158,7 @@ public class GameManager : MonoBehaviour
         {
             canvas.GetComponent<canvas_event>().QueteImage.transform.Find("puzzleBouton").gameObject.SetActive(true);
             coups += 1;
-            Invoke("tutoPuzzle", 5f);
+            Invoke("tutoPuzzle", 2f);
             questFlower = amarObj;
         }
         else if (questFlower == amarObj)
@@ -202,6 +217,29 @@ public class GameManager : MonoBehaviour
         {
             coups -= 1;
             Destroy(btn.gameObject);
+            if(canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") == null
+                && canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") == null)
+            {
+                tuto.transform.GetChild(tuto.transform.childCount).GetComponent<Animator>().SetTrigger("in");
+            }
         }
+    }
+
+    public void joystickMode()
+    {
+        jsMode = true;
+        tapMode = false;
+        canvas.GetComponent<canvas_event>().Pause.transform.Find("Click").GetComponent<Image>().color = Color.grey;
+        canvas.GetComponent<canvas_event>().Pause.transform.Find("Jostick").GetComponent<Image>().color = Color.white;
+
+
+    }
+
+    public void tapModeF()
+    {
+        jsMode = false;
+        tapMode = true;
+        canvas.GetComponent<canvas_event>().Pause.transform.Find("Click").GetComponent<Image>().color = Color.white;
+        canvas.GetComponent<canvas_event>().Pause.transform.Find("Jostick").GetComponent<Image>().color = Color.grey;
     }
 }

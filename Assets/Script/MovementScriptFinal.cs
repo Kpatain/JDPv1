@@ -38,7 +38,7 @@ public class MovementScriptFinal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BigPaper.transform.LookAt(GameManager.Instance.player.transform);
+        BigPaper.transform.LookAt(GameManager.Instance.questFlower.transform);
         Quaternion rot = BigPaper.transform.rotation;
         rot.z = 0f;
         rot.x = 0f;
@@ -67,20 +67,6 @@ public class MovementScriptFinal : MonoBehaviour
         oldPosition = gameObject.transform.position;
 
 
-        //sol position
-
-        RaycastHit hit;
-        Ray downRay = new Ray(transform.position, -Vector3.up);
-
-        if (Physics.Raycast(downRay, out hit))
-        {
-            if (hit.transform.gameObject.tag == "sol")
-            {
-                Vector3 pos = transform.position;
-                pos.y += 1.690102f - hit.distance;
-                //transform.position = pos;
-            }
-        }
     }
 
     void Step(Vector3 temp)
@@ -88,14 +74,9 @@ public class MovementScriptFinal : MonoBehaviour
         Vector3 newposition = transform.position + temp;
         NavMeshHit hit;
         bool isValid = NavMesh.SamplePosition(newposition, out hit, 0.3f, NavMesh.AllAreas);
-        if (isValid)
+        if (isValid && GameManager.Instance.jsMode)
         {
-            
-            this.transform.position += temp;
-        }
-        else
-        {
-            Debug.Log("notvalid");
+            transform.position += temp;
         }
     }
 
