@@ -38,7 +38,7 @@ public class MovementScriptFinal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BigPaper.transform.LookAt(GameManager.Instance.questFlower.transform);
+        BigPaper.transform.LookAt(GameManager.Instance.player.transform);
         Quaternion rot = BigPaper.transform.rotation;
         rot.z = 0f;
         rot.x = 0f;
