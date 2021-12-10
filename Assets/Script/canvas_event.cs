@@ -34,12 +34,14 @@ public class canvas_event : MonoBehaviour
             {
                 if (i == 0)
                 {
+                    GameManager.Instance.questFlower = GameManager.Instance.lysObj;
                     queteText.text = queteTexte1;
                     quete[i].transform.Find("Lié").gameObject.SetActive(true);
                 }
 
                 else
                 {
+                    
                     queteText.text = queteTexte2;
                     quete[i].transform.Find("Lié").gameObject.SetActive(true);
                 }

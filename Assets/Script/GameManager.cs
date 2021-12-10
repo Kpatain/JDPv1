@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool ui = false;
+    bool once = true;
     float moy = 0;
-
+    public bool inTUto = false;
     [SerializeField] Canvas canvas;
+    [SerializeField] GameObject tuto;
     [SerializeField] Button quetebutton;
     [SerializeField] GameObject video;
     [SerializeField] public Color[] paperPColors;
@@ -22,6 +24,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Material trprt;
     [SerializeField] ParticleSystem firework;
     [SerializeField] GameObject collide;
+
+    [SerializeField] public GameObject lysObj;
+    [SerializeField] public GameObject amarObj;
+    [SerializeField] public GameObject helenieObj;
+    public GameObject questFlower;
 
     int coups;
     Image img2;
@@ -90,6 +97,12 @@ public class GameManager : MonoBehaviour
     {
         ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
+
+        if (once && img == canvas.GetComponent<canvas_event>().PuzzleImage)
+        {
+            tuto.transform.Find("8(2quete)").GetComponent<Animator>().SetTrigger("in");
+            inTUto = true;
+        }
     }
 
     public void lier(Image img)
@@ -98,16 +111,18 @@ public class GameManager : MonoBehaviour
         firework.Play();
         if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
         {
-            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
         }
 
         if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") != null)
         {
-            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
+            canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
         }
 
-        canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
-
+        if (img.name == "Helenie_Menu" || img.name == "Lys_Menu") 
+        {
+            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
+        }
         coups += 1;
 
         quetebutton.transform.GetChild(0).gameObject.SetActive(true);
@@ -122,7 +137,21 @@ public class GameManager : MonoBehaviour
         
         img.GetComponent<FlowerScript>().stade = 3;
         img.GetComponent<Animator>().SetTrigger("out");
+        if (questFlower == lysObj)
+        {
+            Invoke("tutoPuzzle", 5f);
+            questFlower = amarObj;
+        }
+        else if (questFlower == amarObj)
+        {
+            questFlower = helenieObj;
+        }
+    }
 
+    void tutoPuzzle()
+    {
+        tuto.transform.Find("7(Puzzle)").GetComponent<Animator>().SetTrigger("in");
+        inTUto = true;
     }
 
     public void skipVideo()
@@ -133,15 +162,21 @@ public class GameManager : MonoBehaviour
             stopVideo();
             Destroy(video);
         }
+
+        tuto.transform.GetChild(0).GetComponent<Animator>().SetTrigger("in");
+        inTUto = true;
     }
 
     private void stopVideo()
     {
         if (video != null)
         {
+            inTUto = true;
             video.transform.GetChild(1).GetComponent<VideoPlayer>().Stop();
+            Destroy(video);
+            tuto.transform.GetChild(0).GetComponent<Animator>().SetTrigger("in");
         }
-       
+        
     }
 
 
@@ -158,6 +193,8 @@ public class GameManager : MonoBehaviour
             coups -= 1;
             Destroy(btn.gameObject);
         }
+
+        
 
     }
 }

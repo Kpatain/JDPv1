@@ -16,13 +16,14 @@ public class MovementScriptFinal : MonoBehaviour
     [SerializeField] public Image amar;
     [SerializeField] public Image helenie;
     [SerializeField] public Camera cam;
+    [SerializeField] public GameObject BigPaper;
 
 
     public Vector3 destroyPosition;
     public Vector3 buff;
     private Vector3 oldPosition = Vector3.zero;
 
-    
+    private Vector3 jsp = Vector3.one;
 
 
     [SerializeField] GameObject planes;
@@ -37,6 +38,12 @@ public class MovementScriptFinal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BigPaper.transform.LookAt(GameManager.Instance.questFlower.transform);
+        Quaternion rot = BigPaper.transform.rotation;
+        rot.z = 0f;
+        rot.x = 0f;
+        BigPaper.transform.rotation = rot;
+
         buff = Vector3.zero;
 
         CameraMov();
