@@ -18,6 +18,7 @@ public class tapTUTO : MonoBehaviour
         {
             if (actualSLide < 5)
             {
+                GameManager.Instance.ui = true;
                 transform.GetChild(actualSLide).GetComponent<Animator>().SetTrigger("out");
                 actualSLide += 1;
                 transform.GetChild(actualSLide).GetComponent<Animator>().SetTrigger("in");
@@ -27,6 +28,7 @@ public class tapTUTO : MonoBehaviour
                 transform.GetChild(actualSLide).GetComponent<Animator>().SetTrigger("out");
                 GameManager.Instance.inTUto = false;
                 actualSLide += 1;
+                GameManager.Instance.ui = false;
             }
         }
             

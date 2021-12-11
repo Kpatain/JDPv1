@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using UnityEngine.Video;
@@ -22,7 +23,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] public Material trprt;
     [SerializeField] ParticleSystem firework;
+    [SerializeField] ParticleSystem firework2;
     [SerializeField] GameObject collide;
+    [SerializeField] GameObject joystickOBJ;
+    [SerializeField] Image Pause;
 
     [SerializeField] public GameObject lysObj;
     [SerializeField] public GameObject amarObj;
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public bool jsMode = false;
     public bool tapMode = true;
+    bool once2 = true;
 
     int coups;
     Image img2;
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour
         coups = 0;
         Application.targetFrameRate = 30;
         video.SetActive(true);
+        ui = true;
         video.transform.GetChild(1).GetComponent<VideoPlayer>().Play();
         Invoke("stopVideo", 50f);
         Destroy(video, 50f);
@@ -48,7 +54,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") == null
+                && canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") == null
+                && once2)
+        {
+            Invoke("rdmInvoke", 10f);
+            once2 = false;
+            tuto.transform.GetChild(tuto.transform.childCount-1).GetComponent<Animator>().SetTrigger("in");
+        }
+
+
+        if (Input.GetMouseButtonDown(0) && tapMode)
         {
             Ray ray = cam.ScreenPointToRay(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z));
             
@@ -57,7 +73,27 @@ public class GameManager : MonoBehaviour
             {
                 if(hit.transform.gameObject.tag == "sol" && !ui)
                 {
-                    player.transform.position = hit.point;
+                    Vector3 buff = hit.point;
+                    buff.y += 1f;
+                    player.GetComponent<NavMeshAgent>().destination = buff;
+                }
+                else if(hit.transform.gameObject.tag == "amar" && !ui)
+                {
+                    Vector3 buff = amarObj.transform.position;
+                    buff.y += 1f;
+                    player.GetComponent<NavMeshAgent>().destination = buff;
+                }
+                else if (hit.transform.gameObject.tag == "lys" && !ui)
+                {
+                    Vector3 buff = lysObj.transform.position;
+                    buff.y += 1f;
+                    player.GetComponent<NavMeshAgent>().destination = buff;
+                }
+                else if (hit.transform.gameObject.tag == "helenie" && !ui)
+                {
+                    Vector3 buff = helenieObj.transform.position;
+                    buff.y += 1f;
+                    player.GetComponent<NavMeshAgent>().destination = buff;
                 }
             }
 
@@ -71,7 +107,7 @@ public class GameManager : MonoBehaviour
                 canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(false);
             }
 
-            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
+            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") != null)
             {
                 canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(false);
             }
@@ -87,6 +123,11 @@ public class GameManager : MonoBehaviour
 
         
         moy += Time.deltaTime;
+    }
+
+    void rdmInvoke()
+    {
+        firework2.Play();
     }
 
 
@@ -189,6 +230,7 @@ public class GameManager : MonoBehaviour
         }
 
         tuto.transform.GetChild(0).GetComponent<Animator>().SetTrigger("in");
+        ui = true;
         inTUto = true;
     }
 
@@ -196,6 +238,7 @@ public class GameManager : MonoBehaviour
     {
         if (video != null)
         {
+            ui = true;
             inTUto = true;
             video.transform.GetChild(1).GetComponent<VideoPlayer>().Stop();
             Destroy(video);
@@ -217,29 +260,33 @@ public class GameManager : MonoBehaviour
         {
             coups -= 1;
             Destroy(btn.gameObject);
-            if(canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") == null
-                && canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") == null)
-            {
-                tuto.transform.GetChild(tuto.transform.childCount).GetComponent<Animator>().SetTrigger("in");
-            }
+            
         }
     }
 
-    public void joystickMode()
+    public void joystickMode(Image img)
     {
+        player.GetComponent<NavMeshAgent>().enabled = false ;
+        joystickOBJ.SetActive(true);
         jsMode = true;
         tapMode = false;
-        canvas.GetComponent<canvas_event>().Pause.transform.Find("Click").GetComponent<Image>().color = Color.grey;
-        canvas.GetComponent<canvas_event>().Pause.transform.Find("Jostick").GetComponent<Image>().color = Color.white;
+        Pause.transform.Find("Click").GetComponent<Button>().interactable = true;
+        Pause.transform.Find("Joystick").GetComponent<Button>().interactable = false;
 
-
+        ui = false;
+        img.GetComponent<Animator>().SetTrigger("out");
     }
 
-    public void tapModeF()
+    public void tapModeF(Image img)
     {
+        joystickOBJ.SetActive(false);
+        player.GetComponent<NavMeshAgent>().enabled = true;
         jsMode = false;
         tapMode = true;
-        canvas.GetComponent<canvas_event>().Pause.transform.Find("Click").GetComponent<Image>().color = Color.white;
-        canvas.GetComponent<canvas_event>().Pause.transform.Find("Jostick").GetComponent<Image>().color = Color.grey;
+        Pause.transform.Find("Click").GetComponent<Button>().interactable = false;
+        Pause.transform.Find("Joystick").GetComponent<Button>().interactable = true;
+
+        ui = false;
+        img.GetComponent<Animator>().SetTrigger("out");
     }
 }

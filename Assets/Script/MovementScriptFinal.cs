@@ -73,7 +73,7 @@ public class MovementScriptFinal : MonoBehaviour
     {
         Vector3 newposition = transform.position + temp;
         NavMeshHit hit;
-        bool isValid = NavMesh.SamplePosition(newposition, out hit, 0.3f, NavMesh.AllAreas);
+        bool isValid = NavMesh.SamplePosition(newposition, out hit, 50f, NavMesh.AllAreas);
         if (isValid && GameManager.Instance.jsMode)
         {
             transform.position += temp;
