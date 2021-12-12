@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         {
             Invoke("rdmInvoke", 10f);
             once2 = false;
+            inTUto = true;
             tuto.transform.GetChild(tuto.transform.childCount-1).GetComponent<Animator>().SetTrigger("in");
         }
 
@@ -266,6 +267,7 @@ public class GameManager : MonoBehaviour
 
     public void joystickMode(Image img)
     {
+        //player.GetComponent<NavMeshAgent>().isStopped = true;
         player.GetComponent<NavMeshAgent>().enabled = false ;
         joystickOBJ.SetActive(true);
         jsMode = true;
@@ -279,6 +281,7 @@ public class GameManager : MonoBehaviour
 
     public void tapModeF(Image img)
     {
+        //player.GetComponent<NavMeshAgent>().isStopped = false;
         joystickOBJ.SetActive(false);
         player.GetComponent<NavMeshAgent>().enabled = true;
         jsMode = false;

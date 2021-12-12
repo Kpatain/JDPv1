@@ -66,17 +66,21 @@ public class MovementScriptFinal : MonoBehaviour
 
         oldPosition = gameObject.transform.position;
 
-
     }
 
     void Step(Vector3 temp)
     {
         Vector3 newposition = transform.position + temp;
         NavMeshHit hit;
-        bool isValid = NavMesh.SamplePosition(newposition, out hit, 50f, NavMesh.AllAreas);
+        bool isValid = NavMesh.SamplePosition(newposition, out hit, 0.25f, NavMesh.AllAreas);
         if (isValid && GameManager.Instance.jsMode)
         {
             transform.position += temp;
+            //GetComponent<NavMeshAgent>().destination =  transform.position + temp;
+        }
+        else
+        {
+            Debug.Log("notvalid");
         }
     }
 
