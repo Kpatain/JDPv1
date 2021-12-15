@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     int coups;
     Image img2;
 
+    Vector3 velocity = Vector3.one;
+
     void Start()
     {
         coups = 0;
@@ -135,7 +137,16 @@ public class GameManager : MonoBehaviour
     public void pause(Image img)
     {
         Debug.Log("menu");
-        img.GetComponent<Animator>().SetTrigger("enter");
+        //img.GetComponent<Animator>().SetTrigger("enter");
+        Vector3 buff = img.transform.position;
+        buff.y += Screen.height;
+        img.transform.position = buff;
+        buff.x = Screen.width;
+        buff.y = Screen.height;
+        buff.z = 0;
+        img.transform.position = Vector3.SmoothDamp(img.transform.position, buff, ref velocity, 1f);
+        StartCoroutine(StateImg(img));
+
         ui = true;
         img2 = img;
 
@@ -291,5 +302,20 @@ public class GameManager : MonoBehaviour
 
         ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
+    }
+
+    private IEnumerator StateImg(Image img)
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (img.enabled)
+        {
+            img.enabled = false;
+        }
+        else
+        {
+            img.enabled = true;
+        }
+        
     }
 }
