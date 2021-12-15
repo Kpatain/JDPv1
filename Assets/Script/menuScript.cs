@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class menuScript : MonoBehaviour
 {
     [SerializeField] Image Info;
-    Vector3 velocity = Vector3.one;
+    Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -28,27 +28,18 @@ public class menuScript : MonoBehaviour
 
     public void CreditIn()
     {
-        Debug.Log("pouet");
-        Info.gameObject.SetActive(true);
-        Vector3 buff = Info.transform.position;
-        buff.y += Screen.height;
-        Info.transform.position = buff;
-        buff = Vector3.zero;
-        Info.transform.position = Vector3.SmoothDamp(Info.transform.position, buff, ref velocity, 1f);
-        //StartCoroutine(StateImg(Info));
-        //Info.GetComponent<Animator>().SetTrigger("enter");
+        Info.gameObject.SetActive(!Info.gameObject.activeSelf);
+        Info.GetComponent<Animator>().SetTrigger("enter");
     }
 
     public void CreditOut()
     {
         Info.GetComponent<Animator>().SetTrigger("out");
+        Invoke("reactive", 3f);
     }
 
-    private IEnumerator StateImg(Image img)
+    void reactive()
     {
-        yield return new WaitForSeconds(1f);
-
-        img.gameObject.SetActive(!img.gameObject.activeSelf);
-
+        Info.gameObject.SetActive(!Info.gameObject.activeSelf);
     }
 }

@@ -1122,10 +1122,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &103874119
 MonoBehaviour:
@@ -54198,10 +54198,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490941963
 MonoBehaviour:
@@ -56731,7 +56731,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh205236
+  m_Name: pb_Mesh56984
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57505,10 +57505,10 @@ RectTransform:
   m_Father: {fileID: 1960029240}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00052013, y: -0.00005160412}
-  m_SizeDelta: {x: 800, y: 1422.7}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.0005187988, y: -0.00005340576}
+  m_SizeDelta: {x: 700, y: 1322.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &786998424
 VideoPlayer:
@@ -57808,7 +57808,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh205716
+  m_Name: pb_Mesh57464
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -58418,10 +58418,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &865239332
 Animator:
@@ -62199,10 +62199,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1014207944
 Animator:
@@ -62267,7 +62267,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh205636
+  m_Name: pb_Mesh57384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -64051,10 +64051,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131337754
 MonoBehaviour:
@@ -64730,10 +64730,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1171963382
 MonoBehaviour:
@@ -64874,10 +64874,10 @@ RectTransform:
   m_Father: {fileID: 865239331}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -400, y: -644}
-  m_SizeDelta: {x: 226.5, y: 214}
+  m_AnchorMin: {x: 0.35, y: 0.5}
+  m_AnchorMax: {x: 0.65, y: 0.64}
+  m_AnchoredPosition: {x: 0, y: 14.5}
+  m_SizeDelta: {x: -13.5, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1172969040
 MonoBehaviour:
@@ -66666,10 +66666,10 @@ RectTransform:
   m_Father: {fileID: 865239331}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -400, y: -985}
-  m_SizeDelta: {x: 226.5, y: 214}
+  m_AnchorMin: {x: 0.35, y: 0.29}
+  m_AnchorMax: {x: 0.65, y: 0.43}
+  m_AnchoredPosition: {x: 0, y: -3.5}
+  m_SizeDelta: {x: -13.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1297561585
 MonoBehaviour:
@@ -67782,7 +67782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -320.7534}
+  m_AnchoredPosition: {x: 0, y: -320.75336}
   m_SizeDelta: {x: 379.99, y: 103.839966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346744239
@@ -70241,16 +70241,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506279171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.006201067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 865239331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -303.74927}
-  m_SizeDelta: {x: 379.99, y: 103.839966}
+  m_AnchorMin: {x: 0.25, y: 0.75}
+  m_AnchorMax: {x: 0.75, y: 0.84}
+  m_AnchoredPosition: {x: 0, y: 10.750732}
+  m_SizeDelta: {x: -20.01001, y: -31.160034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1506279173
 MonoBehaviour:
@@ -72503,7 +72503,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh205680
+  m_Name: pb_Mesh57428
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -77112,10 +77112,10 @@ RectTransform:
   m_Father: {fileID: 872208993}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.0005493164, y: 1706}
-  m_SizeDelta: {x: 800, y: 1633.5}
+  m_SizeDelta: {x: 0, y: 67.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2057117619
 MonoBehaviour:
@@ -78100,10 +78100,10 @@ RectTransform:
   m_Father: {fileID: 865239331}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00051117, y: 355.78204}
-  m_SizeDelta: {x: 371.14, y: 50.36}
+  m_AnchorMin: {x: 0.24, y: 0.71}
+  m_AnchorMax: {x: 0.76, y: 0.74}
+  m_AnchoredPosition: {x: -0.0005187988, y: -4.2179565}
+  m_SizeDelta: {x: -44.859985, y: 2.3599854}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2123200067
 MonoBehaviour:
