@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
 
         if (img.name == "Helenie_Menu" || img.name == "Lys_Menu") 
         {
-            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
+            //canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
             if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
             {
                 canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);

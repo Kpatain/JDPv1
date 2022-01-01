@@ -23,7 +23,8 @@ public class collideScript : MonoBehaviour
     {
         if (other.gameObject.tag == "lys" && !GameManager.Instance.ui && recollide)
         {
-            transform.parent.GetComponent<MovementScriptFinal>().lys.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.pause(transform.parent.GetComponent<MovementScriptFinal>().lys);
+            
             GameManager.Instance.ui = true;
             recollide = false;
             Invoke("recollideF", 10f);
@@ -31,7 +32,7 @@ public class collideScript : MonoBehaviour
 
         if (other.gameObject.tag == "amar" && !GameManager.Instance.ui && recollide)
         {
-            transform.parent.GetComponent<MovementScriptFinal>().amar.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.pause(transform.parent.GetComponent<MovementScriptFinal>().amar);
             GameManager.Instance.ui = true;
             recollide = false;
             Invoke("recollideF", 10f);
@@ -39,7 +40,7 @@ public class collideScript : MonoBehaviour
 
         if (other.gameObject.tag == "helenie" && !GameManager.Instance.ui && recollide)
         {
-            transform.parent.GetComponent<MovementScriptFinal>().helenie.GetComponent<Animator>().SetTrigger("enter");
+            GameManager.Instance.pause(transform.parent.GetComponent<MovementScriptFinal>().helenie);
             GameManager.Instance.ui = true;
             recollide = false;
             Invoke("recollideF", 10f);

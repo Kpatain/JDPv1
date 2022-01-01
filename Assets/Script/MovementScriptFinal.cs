@@ -17,6 +17,7 @@ public class MovementScriptFinal : MonoBehaviour
     [SerializeField] public Image helenie;
     [SerializeField] public Camera cam;
     [SerializeField] public GameObject BigPaper;
+    [SerializeField] public GameObject directionArrow;
 
 
     public Vector3 destroyPosition;
@@ -39,10 +40,15 @@ public class MovementScriptFinal : MonoBehaviour
     void Update()
     {
         BigPaper.transform.LookAt(GameManager.Instance.questFlower.transform);
+        directionArrow.transform.LookAt(GameManager.Instance.questFlower.transform);
         Quaternion rot = BigPaper.transform.rotation;
+        Quaternion rot2 = directionArrow.transform.rotation;
         rot.z = 0f;
+        rot2.z = 0f;
         rot.x = 0f;
+        rot2.x = 0f;
         BigPaper.transform.rotation = rot;
+        directionArrow.transform.rotation = rot2;
 
         buff = Vector3.zero;
 
@@ -78,10 +84,7 @@ public class MovementScriptFinal : MonoBehaviour
             transform.position += temp;
             //GetComponent<NavMeshAgent>().destination =  transform.position + temp;
         }
-        else
-        {
-            Debug.Log("notvalid");
-        }
+
     }
 
 
