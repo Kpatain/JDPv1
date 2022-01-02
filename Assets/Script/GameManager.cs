@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Canvas canvas;
     [SerializeField] GameObject tuto;
     [SerializeField] Button quetebutton;
+    [SerializeField] Button puzzle1;
+    [SerializeField] Button puzzle2;
     [SerializeField] GameObject video;
     [SerializeField] public Color[] paperPColors;
     [SerializeField] public Camera cam;
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject collide;
     [SerializeField] GameObject joystickOBJ;
     [SerializeField] Image Pause;
+    [SerializeField] TextMeshPro flowerTXT;
 
     [SerializeField] public GameObject lysObj;
     [SerializeField] public GameObject amarObj;
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Image").transform.Find("Button") == null
-                && canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Image").transform.Find("Button") == null
+                && canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Image").transform.Find("Button2") == null
                 && once2)
         {
             Invoke("rdmInvoke", 10f);
@@ -74,26 +77,32 @@ public class GameManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                if(hit.transform.gameObject.tag == "sol" && !ui)
+                
+
+                if (hit.transform.gameObject.tag == "sol" && !ui)
                 {
+                    FindObjectOfType<AudioManager>().Play("target");
                     Vector3 buff = hit.point;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
                 }
                 else if(hit.transform.gameObject.tag == "amar" && !ui)
                 {
+                    FindObjectOfType<AudioManager>().Play("target");
                     Vector3 buff = amarObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
                 }
                 else if (hit.transform.gameObject.tag == "lys" && !ui)
                 {
+                    FindObjectOfType<AudioManager>().Play("target");
                     Vector3 buff = lysObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
                 }
                 else if (hit.transform.gameObject.tag == "helenie" && !ui)
                 {
+                    FindObjectOfType<AudioManager>().Play("target");
                     Vector3 buff = helenieObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
@@ -139,7 +148,7 @@ public class GameManager : MonoBehaviour
         img.gameObject.SetActive(!img.gameObject.activeSelf);
         Debug.Log("menu");
         img.GetComponent<Animator>().SetTrigger("enter");
-
+        FindObjectOfType<AudioManager>().Play("pop");
 
         ui = true;
         img2 = img;
@@ -157,7 +166,7 @@ public class GameManager : MonoBehaviour
 
     public void retourPause(Image img)
     {
-        
+        FindObjectOfType<AudioManager>().Play("popOUT");
         ui = false;
         img.GetComponent<Animator>().SetTrigger("out");
         StartCoroutine(reactive(img));
@@ -174,19 +183,20 @@ public class GameManager : MonoBehaviour
     {
         firework.transform.position = collide.transform.position;
         firework.Play();
-        
+        FindObjectOfType<AudioManager>().Play("firework");
+        FindObjectOfType<AudioManager>().Play("link");
 
         if (img.name == "Helenie_Menu" || img.name == "Lys_Menu") 
         {
-            //canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
-            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button") != null)
+            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("Image").gameObject.SetActive(true);
+            if (puzzle1 != null)
             {
-                canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button").GetChild(0).gameObject.SetActive(true);
+                puzzle1.transform.GetChild(0).gameObject.SetActive(true);
             }
 
-            if (canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2") != null)
+            if (puzzle2 != null)
             {
-                canvas.GetComponent<canvas_event>().PuzzleImage.transform.Find("Button2").GetChild(0).gameObject.SetActive(true);
+                puzzle2.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
         
@@ -206,18 +216,19 @@ public class GameManager : MonoBehaviour
         if (questFlower == lysObj)
         {
             canvas.GetComponent<canvas_event>().QueteImage.transform.Find("puzzleBouton").gameObject.SetActive(true);
+            flowerTXT.gameObject.SetActive(true);
             coups += 1;
             Invoke("tutoPuzzle", 2f);
             questFlower = amarObj;
         }
         else if (questFlower == amarObj)
         {
-            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("flower").GetComponent<TextMeshProUGUI>().text = "xP";
+            flowerTXT.text = "xP";
             questFlower = helenieObj;
         }
         else
         {
-            canvas.GetComponent<canvas_event>().QueteImage.transform.Find("flower").GetComponent<TextMeshProUGUI>().text = "xx";
+            flowerTXT.text = "xx";
             coups += 1;
         }
     }
@@ -225,6 +236,7 @@ public class GameManager : MonoBehaviour
     void tutoPuzzle()
     {
         tuto.transform.Find("7(Puzzle)").GetComponent<Animator>().SetTrigger("in");
+        FindObjectOfType<AudioManager>().Play("paper");
         inTUto = true;
     }
 
@@ -238,8 +250,10 @@ public class GameManager : MonoBehaviour
         }
 
         tuto.transform.GetChild(0).GetComponent<Animator>().SetTrigger("in");
+        FindObjectOfType<AudioManager>().Play("paper");
         ui = true;
         inTUto = true;
+        FindObjectOfType<AudioManager>().Play("popOUT");
     }
 
     private void stopVideo()
@@ -266,9 +280,20 @@ public class GameManager : MonoBehaviour
     {
         if (coups > 0)
         {
+            FindObjectOfType<AudioManager>().Play("puzzle");
             coups -= 1;
             Destroy(btn.gameObject);
-            
+
+            if (puzzle1 != null)
+            {
+                puzzle1.transform.GetChild(0).gameObject.SetActive(false);
+            }
+
+            if (puzzle2 != null)
+            {
+                puzzle2.transform.GetChild(0).gameObject.SetActive(false);
+            }
+
         }
     }
 

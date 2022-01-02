@@ -18,6 +18,7 @@ public class tapTUTO : MonoBehaviour
         {
             if (actualSLide < 5)
             {
+                FindObjectOfType<AudioManager>().Play("paper");
                 GameManager.Instance.ui = true;
                 transform.GetChild(actualSLide).GetComponent<Animator>().SetTrigger("out");
                 actualSLide += 1;
@@ -25,6 +26,7 @@ public class tapTUTO : MonoBehaviour
             }
             else
             {
+                FindObjectOfType<AudioManager>().Play("paper");
                 transform.GetChild(actualSLide).GetComponent<Animator>().SetTrigger("out");
                 GameManager.Instance.inTUto = false;
                 actualSLide += 1;
