@@ -48,3 +48,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: burst
+    uniqueID: 2740170213
+    locked: 0

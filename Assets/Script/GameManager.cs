@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image Pause;
     [SerializeField] TextMeshPro flowerTXT;
 
+    [SerializeField] ParticleSystem burst;
+
+
     [SerializeField] public GameObject lysObj;
     [SerializeField] public GameObject amarObj;
     [SerializeField] public GameObject helenieObj;
@@ -284,7 +287,10 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("puzzle");
             coups -= 1;
+            burst.transform.position = btn.transform.position;
+            burst.Play();
             Destroy(btn.gameObject);
+            
 
             if (puzzle1 != null)
             {
