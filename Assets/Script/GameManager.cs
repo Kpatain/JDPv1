@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     bool once = true;
     float moy = 0;
     public bool inTUto = false;
+    [SerializeField] GameObject location;
     [SerializeField] Canvas canvas;
     [SerializeField] GameObject tuto;
     [SerializeField] Button quetebutton;
@@ -86,8 +87,12 @@ public class GameManager : MonoBehaviour
                 {
                     FindObjectOfType<AudioManager>().Play("target");
                     Vector3 buff = hit.point;
+                    Vector3 buff2 = hit.point;
                     buff.y += 1f;
+                    buff2.y += 5f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
+                    location.transform.position = buff2;
+
                 }
                 else if(hit.transform.gameObject.tag == "amar" && !ui)
                 {

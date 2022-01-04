@@ -15,6 +15,7 @@ public class MovementScriptFinal : MonoBehaviour
     [SerializeField] public Image lys;
     [SerializeField] public Image amar;
     [SerializeField] public Image helenie;
+
     [SerializeField] public Camera cam;
     [SerializeField] public GameObject BigPaper;
     [SerializeField] public GameObject directionArrow;
