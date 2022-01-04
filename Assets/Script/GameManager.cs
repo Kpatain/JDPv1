@@ -242,6 +242,7 @@ public class GameManager : MonoBehaviour
 
     public void skipVideo()
     {
+        GetComponent<AudioSource>().enabled = true;
         if (video != null)
         {
 
@@ -258,6 +259,7 @@ public class GameManager : MonoBehaviour
 
     private void stopVideo()
     {
+        GetComponent<AudioSource>().enabled = true;
         if (video != null)
         {
             ui = true;
@@ -327,7 +329,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator reactive(Image img)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         img.gameObject.SetActive(!img.gameObject.activeSelf);
     }
 }

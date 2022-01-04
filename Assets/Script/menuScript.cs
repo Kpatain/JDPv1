@@ -30,12 +30,14 @@ public class menuScript : MonoBehaviour
     {
         Info.gameObject.SetActive(!Info.gameObject.activeSelf);
         Info.GetComponent<Animator>().SetTrigger("enter");
+        FindObjectOfType<AudioManager>().Play("button");
     }
 
     public void CreditOut()
     {
         Info.GetComponent<Animator>().SetTrigger("out");
-        Invoke("reactive", 3f);
+        FindObjectOfType<AudioManager>().Play("buttonOff");
+        Invoke("reactive", 1f);
     }
 
     void reactive()
