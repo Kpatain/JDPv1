@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject joystickOBJ;
     [SerializeField] Image Pause;
     [SerializeField] TextMeshPro flowerTXT;
+    [SerializeField] Material red;
+    [SerializeField] Material orange;
 
     [SerializeField] ParticleSystem burst;
 
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     Image img2;
 
     Vector3 velocity = Vector3.one;
+    Vector3 buff = Vector3.zero;
 
     void Start()
     {
@@ -73,6 +76,10 @@ public class GameManager : MonoBehaviour
             tuto.transform.GetChild(tuto.transform.childCount-1).GetComponent<Animator>().SetTrigger("in");
         }
 
+        if (Vector3.Distance(buff, player.transform.position) < 2f)
+        {
+            location.gameObject.SetActive(false);
+        }
 
         if (Input.GetMouseButtonDown(0) && tapMode)
         {
@@ -86,34 +93,57 @@ public class GameManager : MonoBehaviour
                 if (hit.transform.gameObject.tag == "sol" && !ui)
                 {
                     FindObjectOfType<AudioManager>().Play("target");
-                    Vector3 buff = hit.point;
-                    Vector3 buff2 = hit.point;
+                    buff = hit.point;
+                    
                     buff.y += 1f;
-                    buff2.y += 5f;
+                    
                     player.GetComponent<NavMeshAgent>().destination = buff;
+                    Vector3 buff2 = hit.point;
+                    buff2.y += 2f;
+                    location.gameObject.SetActive(true);
+                    location.transform.GetChild(0).GetComponent<Animator>().SetTrigger("anim");
                     location.transform.position = buff2;
+
 
                 }
                 else if(hit.transform.gameObject.tag == "amar" && !ui)
                 {
                     FindObjectOfType<AudioManager>().Play("target");
-                    Vector3 buff = amarObj.transform.position;
+                    buff = amarObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
+                    Vector3 buff2 = hit.point;
+                    buff2.y += 2f;
+                    location.gameObject.SetActive(true);
+                    location.transform.GetChild(0).GetComponent<Animator>().SetTrigger("anim");
+                    location.transform.position = buff2;
+
                 }
                 else if (hit.transform.gameObject.tag == "lys" && !ui)
                 {
                     FindObjectOfType<AudioManager>().Play("target");
-                    Vector3 buff = lysObj.transform.position;
+                    buff = lysObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
+                    Vector3 buff2 = hit.point;
+                    buff2.y += 2f;
+                    location.gameObject.SetActive(true);
+                    location.transform.GetChild(0).GetComponent<Animator>().SetTrigger("anim");
+                    location.transform.position = buff2;
+
                 }
                 else if (hit.transform.gameObject.tag == "helenie" && !ui)
                 {
                     FindObjectOfType<AudioManager>().Play("target");
-                    Vector3 buff = helenieObj.transform.position;
+                    buff = helenieObj.transform.position;
                     buff.y += 1f;
                     player.GetComponent<NavMeshAgent>().destination = buff;
+                    Vector3 buff2 = hit.point;
+                    buff2.y += 2f;
+                    location.gameObject.SetActive(true);
+                    location.transform.GetChild(0).GetComponent<Animator>().SetTrigger("anim");
+                    location.transform.position = buff2;
+
                 }
             }
 
@@ -228,11 +258,13 @@ public class GameManager : MonoBehaviour
             coups += 1;
             Invoke("tutoPuzzle", 2f);
             questFlower = amarObj;
+            player.GetComponent<MovementScriptFinal>().directionArrow.transform.GetChild(0).GetComponent<SpriteRenderer>().material = red;
         }
         else if (questFlower == amarObj)
         {
             flowerTXT.text = "xP";
             questFlower = helenieObj;
+            player.GetComponent<MovementScriptFinal>().directionArrow.transform.GetChild(0).GetComponent<SpriteRenderer>().material = orange;
         }
         else
         {
