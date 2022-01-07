@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour
         }
         
         img.GetComponent<FlowerScript>().stade = 3;
-        img.GetComponent<Animator>().SetTrigger("out");
+        retourPause(img);
         if (questFlower == lysObj)
         {
             canvas.GetComponent<canvas_event>().QueteImage.transform.Find("puzzleBouton").gameObject.SetActive(true);
